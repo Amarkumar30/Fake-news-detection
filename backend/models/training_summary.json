@@ -1,0 +1,121 @@
+{
+  "trained_at_utc": "2026-05-01T14:50:39.393526+00:00",
+  "data_directory": "C:\\Users\\amarr\\OneDrive\\Desktop\\ml\\Fake News Detection\\data",
+  "dataset_sizes": {
+    "train": 10240,
+    "valid": 1284,
+    "test": 1267
+  },
+  "deployed_model": "RandomForest",
+  "best_validation_model": "RandomForest",
+  "models": {
+    "LogisticRegression": {
+      "validation": {
+        "accuracy": 0.6083,
+        "precision": 0.6295,
+        "recall": 0.6003,
+        "f1_score": 0.6146,
+        "roc_auc": 0.6587,
+        "confusion_matrix": [
+          [
+            380,
+            236
+          ],
+          [
+            267,
+            401
+          ]
+        ]
+      },
+      "test": {
+        "accuracy": 0.6062,
+        "precision": 0.6516,
+        "recall": 0.6471,
+        "f1_score": 0.6493,
+        "roc_auc": 0.6518,
+        "confusion_matrix": [
+          [
+            306,
+            247
+          ],
+          [
+            252,
+            462
+          ]
+        ]
+      }
+    },
+    "NaiveBayes": {
+      "validation": {
+        "accuracy": 0.5989,
+        "precision": 0.5897,
+        "recall": 0.753,
+        "f1_score": 0.6614,
+        "roc_auc": 0.6467,
+        "confusion_matrix": [
+          [
+            266,
+            350
+          ],
+          [
+            165,
+            503
+          ]
+        ]
+      },
+      "test": {
+        "accuracy": 0.6069,
+        "precision": 0.6205,
+        "recall": 0.7787,
+        "f1_score": 0.6907,
+        "roc_auc": 0.6494,
+        "confusion_matrix": [
+          [
+            213,
+            340
+          ],
+          [
+            158,
+            556
+          ]
+        ]
+      }
+    },
+    "RandomForest": {
+      "validation": {
+        "accuracy": 0.655,
+        "precision": 0.6455,
+        "recall": 0.747,
+        "f1_score": 0.6926,
+        "roc_auc": 0.7163,
+        "confusion_matrix": [
+          [
+            342,
+            274
+          ],
+          [
+            169,
+            499
+          ]
+        ]
+      },
+      "test": {
+        "accuracy": 0.6669,
+        "precision": 0.6825,
+        "recall": 0.7647,
+        "f1_score": 0.7213,
+        "roc_auc": 0.7036,
+        "confusion_matrix": [
+          [
+            299,
+            254
+          ],
+          [
+            168,
+            546
+          ]
+        ]
+      }
+    }
+  }
+}
