@@ -25,11 +25,11 @@ function App() {
         setBackendStatus("online");
       } else {
         setBackendStatus("offline");
-        setBackendError(health.startup_error || "Backend offline — start Flask server");
+        setBackendError(health.startup_error || "Backend offline - start Flask server");
       }
     } catch (error) {
       setBackendStatus("offline");
-      setBackendError(extractErrorMessage(error) || "Backend offline — start Flask server");
+      setBackendError(extractErrorMessage(error) || "Backend offline - start Flask server");
     }
   }, []);
 
@@ -41,7 +41,7 @@ function App() {
     backendStatus === "offline" ? (
       <StatusMessage
         type="error"
-        message="Backend offline — start Flask server"
+        message="Backend offline - start Flask server"
         action={
           <button type="button" className="ghost-button" onClick={runBackendHealthCheck}>
             Retry
