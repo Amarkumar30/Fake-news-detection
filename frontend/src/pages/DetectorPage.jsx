@@ -4,12 +4,13 @@ import { predictNews, extractErrorMessage } from "../api/client";
 import PageTransition from "../components/PageTransition";
 import ResultPanel from "../components/ResultPanel";
 import StatusMessage from "../components/StatusMessage";
-import { exampleSnippets, partyOptions } from "../data/exampleSnippets";
+import { exampleSnippets, partyOptions, subjectOptions } from "../data/exampleSnippets";
 
 const initialForm = {
   text: "",
   speaker: "",
   party: "unknown",
+  subject: "unknown",
 };
 
 const MIN_TEXT_LENGTH = 10;
@@ -65,6 +66,7 @@ function DetectorPage() {
       text: form.text,
       speaker: form.speaker || undefined,
       party: form.party || undefined,
+      subject: form.subject || undefined,
     };
     await submitPayload(payload);
   }
@@ -74,6 +76,7 @@ function DetectorPage() {
       text: example.text,
       speaker: example.speaker,
       party: example.party,
+      subject: example.subject,
     });
     setResult(null);
     setError("");
@@ -152,7 +155,7 @@ function DetectorPage() {
             </div>
           </label>
 
-          <div className="form-row">
+          <div className="metadata-grid">
             <label className="form-field">
               <span>Speaker name</span>
               <input
@@ -176,7 +179,26 @@ function DetectorPage() {
                 ))}
               </select>
             </label>
+
+            <label className="form-field">
+              <span>Subject</span>
+              <select
+                value={form.subject}
+                onChange={(event) => updateField("subject", event.target.value)}
+              >
+                {subjectOptions.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
+
+          <p className="form-note">
+            Subject and speaker are optional, but they help the deployed Random Forest model use the same metadata
+            signals it learned during training.
+          </p>
 
           <div className="form-actions">
             <button type="submit" className="analyze-button" disabled={submitDisabled}>
@@ -239,7 +261,7 @@ function DetectorPage() {
               className="example-card"
               onClick={() => applyExample(example)}
             >
-              <span className="mono-meta">{example.party}</span>
+              <span className="mono-meta">{example.party} / {example.subject}</span>
               <h3>{example.title}</h3>
               <p>{example.text}</p>
             </button>

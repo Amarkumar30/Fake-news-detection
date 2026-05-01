@@ -19,10 +19,10 @@ function buildNarrative(result) {
       : "No historical speaker credibility was supplied for this run.";
 
   const keywordText = topKeyword
-    ? `The strongest textual signal in this pass was "${topKeyword}".`
+    ? `The strongest text signal in this pass was "${topKeyword}".`
     : "The model relied more on broad text structure than standout terms for this sample.";
 
-  return `${result.prediction} at ${confidence}% confidence. ${credibilityText} ${keywordText}`;
+  return `${result.prediction} at ${confidence}% model confidence. ${credibilityText} ${keywordText}`;
 }
 
 function ResultPanel({ result }) {
@@ -33,9 +33,9 @@ function ResultPanel({ result }) {
           <span className="eyebrow">Awaiting Analysis</span>
           <h2>Submit a claim to see the forensic breakdown.</h2>
         </div>
-        <p className="muted-copy">
-          The detector will return a binary verdict, confidence score, historical speaker credibility, and the top
-          weighted keywords that informed the model.
+          <p className="muted-copy">
+          The detector will return a binary verdict, model confidence, speaker credibility, and ranked text signals
+          that influenced the classifier.
         </p>
       </section>
     );
@@ -75,6 +75,10 @@ function ResultPanel({ result }) {
         <CircularConfidence value={confidencePercent} verdict={result.prediction} />
       </div>
 
+      <p className="confidence-note">
+        Confidence is the model's probability for the selected class. It is not live factual verification.
+      </p>
+
       <div className="result-grid">
         <div className="result-column">
           <CredibilityGauge value={result.explanation?.credibility_score} />
@@ -86,8 +90,8 @@ function ResultPanel({ result }) {
 
         <div className="result-column">
           <div className="section-label-row">
-            <span className="section-label">Top Influential Keywords</span>
-            <span className="mono-meta">{result.explanation?.explanation_method || "weighted_tfidf"}</span>
+            <span className="section-label">Ranked Text Signals</span>
+            <span className="mono-meta">TF-IDF importance</span>
           </div>
           <KeywordChips keywords={result.explanation?.top_tfidf_features || []} />
         </div>
@@ -97,4 +101,3 @@ function ResultPanel({ result }) {
 }
 
 export default ResultPanel;
-

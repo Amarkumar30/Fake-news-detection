@@ -19,7 +19,7 @@ function KeywordChips({ keywords = [] }) {
         },
       }}
     >
-      {keywords.map((keyword) => (
+      {keywords.map((keyword, index) => (
         <motion.div
           key={`${keyword.feature}-${keyword.contribution}`}
           className="keyword-chip"
@@ -28,8 +28,9 @@ function KeywordChips({ keywords = [] }) {
             visible: { opacity: 1, y: 0 },
           }}
         >
+          <small>#{index + 1}</small>
           <span>{keyword.feature}</span>
-          <strong>{keyword.contribution}</strong>
+          <strong>{Number(keyword.contribution).toFixed(4)}</strong>
         </motion.div>
       ))}
     </motion.div>
@@ -37,4 +38,3 @@ function KeywordChips({ keywords = [] }) {
 }
 
 export default KeywordChips;
-
